@@ -2,8 +2,8 @@ from django.http import Http404
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Image
-from .serializers import ImageSerializer
+from api.models import Image
+from api.serializers import ImageSerializer
 
 
 class ImageList(APIView):
@@ -49,4 +49,3 @@ class ImageDetail(APIView):
         img = self.get_object(pk)
         img.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-        

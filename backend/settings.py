@@ -47,11 +47,11 @@ INSTALLED_APPS = [
     'api',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASS': (
-        'rest_framework.renderers.JSONRenderer'
-    )
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASS': (
+#         'rest_framework.renderers.JSONRenderer'
+#     )
+# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,6 +135,6 @@ STATIC_URL = '/static/'
 
 # Media files
 
-# MEDIA_URL = '/media/'
+MEDIA_URL = '/media/'
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

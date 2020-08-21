@@ -1,9 +1,11 @@
 from .models import Image
 from rest_framework import serializers
 
+
 class ImageSerializer(serializers.HyperlinkedModelSerializer):
-    image = serializers.ImageField(use_url=True)
+    img = serializers.ImageField(use_url=True)
+    # image = serializers.ImageField()
 
     class Meta:
         model = Image
-        fields = ('image')
+        fields = "__all__"

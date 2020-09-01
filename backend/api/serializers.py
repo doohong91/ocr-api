@@ -3,9 +3,12 @@ from rest_framework import serializers
 
 
 class ImageSerializer(serializers.HyperlinkedModelSerializer):
-    img = serializers.ImageField(use_url=True)
-    # image = serializers.ImageField()
+    # original_img = serializers.ImageField(use_url=True)
+    # result_img = serializers.ImageField(use_url=True)
 
     class Meta:
         model = Image
         fields = "__all__"
+        read_only_fields = [
+            "orig_img",
+        ]

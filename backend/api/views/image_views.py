@@ -4,8 +4,9 @@ from rest_framework.response import Response
 from rest_framework import status
 
 # from api.models import Image
-from api.serializers import ImageSerializer
+from api.serializers import ImageUploadSerializer
 from plugins.detector import Detection
+from plugins.engines import send
 
 
 # class ImageViewSet(ModelViewSet):
@@ -28,15 +29,19 @@ from plugins.detector import Detection
 #         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
-class ImageView(APIView):
+class ImageUploadView(APIView):
     def post(self, request):
         img = request.data.get("file")
-
+        url = request.META.get("HTTP_URL")
+        key = request.META.get("HTTP_API_KEY")
         if img is None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         format_detector = Detection()
-        data = format_detector.detect(img)
-        serializer = ImageSerializer(data=data, context={"request": request})
+        detection_result = format_detector.detect(img)
+        recognition_result = send(img, url, key)
+        print(recognition_result)
+
+        serializer = ImageUploadSerializer(data=detection_result, context={"request": request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

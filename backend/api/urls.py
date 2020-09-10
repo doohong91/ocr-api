@@ -28,7 +28,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     # path("", include(router.urls)),
-    path("post/", image_views.ImageView.as_view()),
+    path("upload/", image_views.ImageUploadView.as_view()),
 ]
 
 # swagger관련 End Point 추가 (DEBUG Mode에서만 노출)
